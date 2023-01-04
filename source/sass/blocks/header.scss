@@ -108,60 +108,61 @@
 .header__toggle {
   position: absolute;
   right: 31px;
-  top: 23px;
+  transform: translateY(-50%);
+  top: 50%;
   width: 20px;
   height: 20px;
   background-color: transparent;
   border: none;
   padding: 0;
-
-  &--opened {
-    right: 31px;
-    top: 27px;
-    width: 22px;
-    height: 22px;
-  }
-
-  &--closed {
-    right: 29px;
-    top: 22px;
-    width: 22px;
-    height: 22px;
-
-    &::before {
-      content: "";
-      display: block;
-      top: 0;
-      width: 20px;
-      height: 2px;
-      background-color: $color-title;
-      box-shadow: 0 6px 0 $color-title, 0 12px 0 $color-title;
-    }
-
-    &--nojs {
-      display: none;
-    }
-  }
+  display: flex;
+  align-items: center;
 
   @include viewport--md {
     display: none;
   }
 }
 
-.header__toggle--opened::before,
-.header__toggle--opened::after {
-  position: absolute;
-  content: "";
+.header__toggle span {
+  width: 100%;
   height: 2px;
-  width: 25px;
   background-color: $color-title;
   display: block;
+  position: relative;
+  pointer-events: none;
 }
 
-.header__toggle--opened::before {
-  transform: rotate(45deg);
+.header__toggle span::before,
+.header__toggle span::after {
+  content: "";
+  width: 100%;
+  height: 2px;
+  background-color: $color-title;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.header__toggle--opened::after {
-  transform: rotate(-45deg);
+.header__toggle span::before {
+  top: -6px;
+}
+
+.header__toggle span::after {
+  bottom: -6px;
+}
+
+.header__toggle--close span {
+  height: 0;
+}
+
+.header__toggle--close span::before {
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  transition: 0.2s ease 0s;
+}
+
+.header__toggle--close span::after {
+  bottom: 50%;
+  transform: translate(-50%, 50%) rotate(-45deg);
+  transition: 0.2s ease 0s;
 }

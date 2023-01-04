@@ -20,6 +20,10 @@ body {
   padding: 0;
 }
 
+body.lock {
+  overflow: hidden;
+}
+
 .body-index {
   background-color: $color-bg-index;
 }

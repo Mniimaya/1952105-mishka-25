@@ -1,12 +1,22 @@
-const menuToggle = () => {
-  const header = document.querySelector('.header');
-  const headerButton = document.querySelector('.header__toggle');
+const handlerMenu = function() {
+  const button = document.querySelector('.header__toggle--open');
+  const menu = document.querySelector('.header-sub');
 
-  header.classList.remove('header--no--js')
+  button.addEventListener('click', function(e) {
 
-  headerButton.addEventListener('click', () => {
-    haeder.classList.toggle('.menu--opened');
+    if(e.target.classList.contains('header__toggle--close')) {
+      button.classList.remove('header__toggle--close');
+      button.classList.add('header__toggle--open');
+      menu.classList.remove('header-sub--opened');
+      document.body.classList.remove('lock');
+      return;
+    }
+
+    button.classList.add('header__toggle--close');
+    button.classList.remove('header__toggle--open');
+    menu.classList.add('header-sub--opened');
+    document.body.classList.add('lock');
   })
 }
 
-menuToggle();
+handlerMenu();

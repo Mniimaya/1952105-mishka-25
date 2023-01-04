@@ -1,6 +1,16 @@
 .header-sub {
   width: 100%;
   background-color: $color-bg-index;
+  position: fixed;
+  z-index: 1001;
+  width: 100vw;
+  left: 0;
+  overflow-y: hidden;
+  height: 100vh;
+  background-color: $color-white;
+  transform: translate3d(-100%, 0, 0);
+  transition: transform .2s ease 0s;
+  will-change: transform;
 
   &::before {
     content: "";
@@ -10,8 +20,20 @@
     display: block;
   }
 
+  &--opened {
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+  }
+
   &--gray {
     background-color: $color-bg-title;
+  }
+
+  @include viewport--md {
+    transform: translate3d(0, 0, 0);
+    height: auto;
+    width: auto;
+    position: static;
   }
 }
 
@@ -47,6 +69,7 @@
 
   &--closed {
     display: block;
+
   }
 
   &--opened {
